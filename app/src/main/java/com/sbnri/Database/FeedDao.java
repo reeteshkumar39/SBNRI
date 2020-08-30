@@ -1,6 +1,7 @@
 package com.sbnri.Database;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.DataSource;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -19,4 +20,8 @@ public interface FeedDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(List<RepoListItem> repoListItemList);
 
+    @Query("SELECT * FROM sbnri_table")
+    DataSource.Factory<Integer, RepoListItem> getAllPagedData();
+
 }
+

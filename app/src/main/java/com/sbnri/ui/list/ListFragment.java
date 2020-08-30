@@ -63,12 +63,10 @@ public class ListFragment extends BaseFragment {
                 binding.progressBar.setVisibility(View.GONE);
             });
         } else {
-            listViewModel.getApiResponseLiveData().observe(getViewLifecycleOwner(), locationData -> {
-                if (locationData != null) {
-                    Toast.makeText(getContext(), locationData.get(0).getName(), Toast.LENGTH_LONG).show();
-                    Toast.makeText(getContext(), "Please check network connection", Toast.LENGTH_LONG).show();
-
-                }
+            listViewModel.getPagedList().observe(getViewLifecycleOwner(), repoListItems -> {
+                adapter.submitList(repoListItems);
+                binding.progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(), "Please check network connection", Toast.LENGTH_LONG).show();
             });
         }
 

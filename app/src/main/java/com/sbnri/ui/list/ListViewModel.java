@@ -18,14 +18,17 @@ import java.util.List;
 public class ListViewModel extends AndroidViewModel {
     LiveData<PagedList<RepoListItem>> itemPagedList;
     LiveData<PageKeyedDataSource<Integer, RepoListItem>> liveDataSource;
-
     private LiveData<List<RepoListItem>> apiResponseLiveData;
     private DataRepository dataRepository;
-    private MutableLiveData<Boolean> loadingState;
+
+
+    public final LiveData<PagedList<RepoListItem>> pagedList;
+
     public ListViewModel(@NonNull Application application) {
         super(application);
         dataRepository = new DataRepository(application);
         apiResponseLiveData = dataRepository.getSavedData();
+        pagedList = dataRepository.getPagedList();
         //loadingState = travelDataRepository.getLoadingState();
         ItemDataSourceFactory itemDataSourceFactory = new ItemDataSourceFactory();
         liveDataSource = itemDataSourceFactory.getItemLiveDataSource();
@@ -42,15 +45,7 @@ public class ListViewModel extends AndroidViewModel {
         return apiResponseLiveData;
     }
 
-//    public void fetchFromWeb() {
-//        travelDataRepository.getAllData();
-//    }
-//
-//    public void updateData(FeedListItem locationData) {
-//        travelDataRepository.updateData(locationData);
-//    }
-
-    public MutableLiveData<Boolean> getLoadingState() {
-        return loadingState;
+    public LiveData<PagedList<RepoListItem>> getPagedList() {
+        return pagedList;
     }
 }
