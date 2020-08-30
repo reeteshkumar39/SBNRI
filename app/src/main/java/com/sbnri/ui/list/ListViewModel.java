@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PageKeyedDataSource;
 import androidx.paging.PagedList;
@@ -29,7 +28,6 @@ public class ListViewModel extends AndroidViewModel {
         dataRepository = new DataRepository(application);
         apiResponseLiveData = dataRepository.getSavedData();
         pagedList = dataRepository.getPagedList();
-        //loadingState = travelDataRepository.getLoadingState();
         ItemDataSourceFactory itemDataSourceFactory = new ItemDataSourceFactory();
         liveDataSource = itemDataSourceFactory.getItemLiveDataSource();
         PagedList.Config config =

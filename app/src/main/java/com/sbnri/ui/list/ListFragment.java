@@ -18,11 +18,8 @@ import com.adapter.RepoItemAdapter;
 import com.sbnri.R;
 import com.sbnri.base.BaseApplication;
 import com.sbnri.base.BaseFragment;
-import com.sbnri.data.model.RepoListItem;
 import com.sbnri.databinding.FragmentListBinding;
 import com.sbnri.util.InternetConnection;
-
-import java.util.List;
 
 public class ListFragment extends BaseFragment {
 
